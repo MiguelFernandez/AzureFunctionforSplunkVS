@@ -198,13 +198,7 @@ namespace AzureFunctionForSplunk
                 throw new ArgumentException();
             }
 
-            string astpConnection = "";
-            bool devEnvironment = Utils.getEnvironmentVariable("FUNCTIONS_CORETOOLS_ENVIRONMENT").ToLower() == "true";
-            if (devEnvironment)
-            {
-                astpConnection = Utils.getEnvironmentVariable("astpConnectionString");
-            }
-            // log.LogInformation($"devEnvironment: {devEnvironment}, astpConnection: {astpConnection}");
+            string astpConnection = Utils.getEnvironmentVariable("astpConnectionString");
 
             string accessToken = "";
             try
