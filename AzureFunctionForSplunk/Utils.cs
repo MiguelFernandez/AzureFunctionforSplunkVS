@@ -117,14 +117,22 @@ namespace AzureFunctionForSplunk
 
             static SingleHttpClientInstance()
             {
-                var handler = new SocketsHttpHandler
+                //var handler = new SocketsHttpHandler
+                //{
+                //    SslOptions = new SslClientAuthenticationOptions
+                //    {
+                //        RemoteCertificateValidationCallback = ValidateMyCert,
+                //        EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12
+                //    }
+                //};
+
+                var handler = new HttpClientHandler
                 {
-                    SslOptions = new SslClientAuthenticationOptions
-                    {
-                        RemoteCertificateValidationCallback = ValidateMyCert,
-                        EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12
-                    }
-                };
+                    ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator,
+                    
+            };
+
+                
 
                 HttpClient = new HttpClient(handler);
             }
